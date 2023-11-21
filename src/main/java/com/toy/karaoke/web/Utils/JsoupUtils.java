@@ -1,6 +1,9 @@
 package com.toy.karaoke.web.Utils;
 
+import com.toy.karaoke.web.entity.AnimeNameForm;
 import com.toy.karaoke.web.entity.SongForm;
+import com.toy.karaoke.web.entity.SongToDatabaseForm;
+import com.toy.karaoke.web.entity.SongWrapper;
 import lombok.extern.slf4j.Slf4j;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -29,7 +32,6 @@ public class JsoupUtils {
    }
 
    public static List<SongForm> getSongs() {
-      log.info("탔음");
       String url = "https://www.tjmedia.com/tjsong/song_monthNew.asp";
       String selector = "div#BoardType1 table.board_type1 tbody tr";
       Document doc = null;
@@ -68,7 +70,6 @@ public class JsoupUtils {
          }
 
       }
-      log.info("songFormList={}",songFormList);
       return songFormList;
    }
 
@@ -89,8 +90,66 @@ public class JsoupUtils {
       Elements month = doc.select(selector);
       // 이번달을 가져온다.
       String thisMonth = month.text();
-      log.info("thisMonth={}",thisMonth);
 
       return thisMonth;
+   }
+
+   /**
+    * DB에 **애니** 노래를 추가 하기 위한 메서드.
+    * @return dbSongList
+    */
+   public static List<SongWrapper> animeDBSongList(){
+      List<SongWrapper> songwrapperList = new ArrayList<>();
+      // url
+      String url = "https://namu.wiki/w/%EC%95%A0%EB%8B%88%EB%A9%94%EC%9D%B4%EC%85%98%20%EC%9D%8C%EC%95%85/%EB%85%B8%EB%9E%98%EB%B0%A9%20%EC%88%98%EB%A1%9D%20%EB%AA%A9%EB%A1%9D/%EC%A0%84%EC%B2%B4%EA%B3%A1%20%EC%9D%BC%EB%9E%8C";
+      // css 선택자(tr)
+      String tables = "table.TiHaw-AK";
+      String selector = ".TiHaw-AK tbody tr";
+
+
+      Document doc = null;
+      // doc connect
+      try {
+         doc = org.jsoup.Jsoup.connect(url).get();
+      } catch (IOException e) {
+         e.printStackTrace();
+      }
+
+      // 3번째 테이블을 가져오고 싶음. (클래스명이 동일하기에 요소화시켜서 가져오는 방법 채택)
+      Elements getTables = doc.select(tables);
+      for(int i = 2; i < 16; i++) {
+         Element table = getTables.get(i);
+         Elements animeSongTr = table.select("tr");
+
+         // 가져온 tr중 td를 하나씩 분해
+         for (Element element : animeSongTr) {
+            String texts = element.text();
+            Elements tds = element.select("td");
+            if (tds.size() >= 3) {
+               SongWrapper dbAnimeSongObj = new SongWrapper();
+               dbAnimeSongObj.setSongToDatabaseForm(new SongToDatabaseForm());
+               dbAnimeSongObj.getSongToDatabaseForm().setStdbfTjNumber(tds.get(0).text());
+               dbAnimeSongObj.getSongToDatabaseForm().setStdbfKyNumber(tds.get(1).text());
+               dbAnimeSongObj.getSongToDatabaseForm().setStdbfSongName(tds.get(2).text());
+               dbAnimeSongObj.getSongToDatabaseForm().setStdbfSongSinger(tds.get(3).text());
+               if(tds.get(2).text().equals("곡 제목")){
+                  dbAnimeSongObj.setSongToDatabaseForm(null);
+               }
+               songwrapperList.add(dbAnimeSongObj);
+            } else if(tds.size() == 2) {
+               SongWrapper animeNameForm = new SongWrapper();
+               animeNameForm.setAnimeNameForm(new AnimeNameForm());
+               animeNameForm.getAnimeNameForm().setAnfAnimeName(tds.get(0).text());
+               animeNameForm.getAnimeNameForm().setAnfSingerNumber(tds.get(1).text());
+
+               songwrapperList.add(animeNameForm);
+            } else if(tds.size() == 1){
+               SongWrapper animeNameForm = new SongWrapper();
+               animeNameForm.setAnimeNameForm(new AnimeNameForm());
+               animeNameForm.getAnimeNameForm().setAnfAnimeName(tds.get(0).text());
+            }
+         }
+      }
+      return songwrapperList;
    }
 }

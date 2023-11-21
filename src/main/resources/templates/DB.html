@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>J SONG DB!!</title>
+</head>
+<style>
+  #songTable {
+    width:100%;
+  }
+
+  #songTable td {
+    height:25px;
+    vertical-align: middle;
+    word-break: keep-all;
+  }
+
+  #songTable td:nth-child(1),
+  #songTable td:nth-child(2) {
+    width:10%;
+    text-align:center;
+    vertical-align: center;
+    background: bisque;
+  }
+
+  #songTable td:nth-child(3) {
+    width:55%;
+    text-align: center;
+    vertical-align: center;
+  }
+  #songTable td:nth-child(4) {
+    width:25%;
+    text-align: center;
+    vertical-align: center;
+  }
+
+  #animeName {
+    background: #FC9292;
+    font-size:20px;
+  }
+
+  #animeSingerNumber {
+    background: #FC9292;
+    font-size:20px;
+  }
+
+  #dbWrapper {
+    width:75%;
+    display:flex;
+  }
+
+</style>
+<body>
+  <div id="dbWrapper">
+    <table id="songTable" border="1">
+      <thead>
+        <tr>
+          <th>태진 번호</th>
+          <th>금영 번호</th>
+          <th>노래 제목</th>
+          <th>노래 가수</th>
+        </tr>
+      </thead>
+      <tbody th:each="animeSong : ${animeSong}">
+        <tr th:if="${animeSong.animeNameForm}">
+          <td th:text="${animeSong.animeNameForm.anfAnimeName}" id="animeName" style="background: #FC9292;" colspan="2"></td>
+          <td th:if="${animeSong.animeNameForm.anfSingerNumber}" th:text="${animeSong.animeNameForm.anfSingerNumber}" id="animeSingerNumber" style="background: #FC9292;" colspan="2"></td>
+        </tr>
+        <tr th:if="${animeSong.songToDatabaseForm}">
+          <td th:text="${animeSong.songToDatabaseForm.stdbfTjNumber}"></td>
+          <td th:text="${animeSong.songToDatabaseForm.stdbfKyNumber}"></td>
+          <td th:text="${animeSong.songToDatabaseForm.stdbfSongName}"></td>
+          <td th:text="${animeSong.songToDatabaseForm.stdbfSongSinger}"></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>
