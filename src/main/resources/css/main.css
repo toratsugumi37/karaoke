@@ -1,0 +1,9 @@
+#songTable {
+    width:100%;
+}
+
+#songTable th, td{
+    width:20%;
+    height:50px;
+    vertical-align: middle;
+}

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>메인</title>
+    <link rel="stylesheet" href="../css/main.css">
+</head>
+<style>
+    #songTable {
+        width:100%;
+    }
+
+    #songTable th,td {
+        width:20%;
+        height:50px;
+        vertical-align: middle;
+    }
+</style>
+<body>
+    <div>
+        <p><span th:text="${thisMonth}"></span><span></span></p>
+    </div>
+    <table id="songTable" border="1" th:each="songList : ${songList}">
+        <tr>
+            <th>곡 번호</th>
+            <th>곡 제목</th>
+            <th>곡 가수</th>
+            <th>곡 작사</th>
+            <th>곡 작곡</th>
+        </tr>
+        <tr>
+            <td th:text="${songList.songNumber}"></td>
+            <td th:text="${songList.songName}"></td>
+            <td th:text="${songList.songSinger}"></td>
+            <td th:text="${songList.songLyricist}"></td>
+            <td th:text="${songList.songComposer}"></td>
+        </tr>
+    </table>
+</body>
+</html>
