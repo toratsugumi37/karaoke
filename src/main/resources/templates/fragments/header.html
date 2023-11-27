@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<div th:fragment="header" class="fragmentHeader">
+    <link rel="stylesheet" href="/css/header.css">
+    <style>
+
+        .content {
+            margin-left:25%;
+            margin-right:25%;
+        }
+
+        #loginForm {
+            display: flex;
+            width:100%;
+            height: 100%;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .loginBox {
+            display: flex;
+            position:fixed;
+            box-sizing: border-box;
+            width: 15%;
+            height: 20%;
+            top: 15%;
+            right:1%;
+            background: #FFFFFF;
+            border: 2px solid #FF6B00;
+            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+            border-radius: 20px;
+            justify-content: center;
+        }
+
+        .idPwWrapper {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width:100%;
+        }
+
+        #idBox{
+            /* 아이디 INPUT */
+            width: 50%;
+            height: 50%;
+
+            font-family: 'Inter';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 12px;
+            line-height: 15px;
+
+            color: #FF6B00;
+        }
+
+        #pwBox{
+            width: 50%;
+            height: 50%;
+
+            font-family: 'Inter';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 12px;
+            line-height: 15px;
+
+            color: #FF6B00;
+        }
+
+        .loginWrapper {
+            display: flex;
+            justify-content: center;
+        }
+
+        #loginBtn {
+            box-sizing: border-box;
+
+            width: 60%;
+            height: 80%;
+
+            background: #FFFFFF;
+            border: 1px solid #FF6B00;
+            border-radius: 20px;
+            margin:5px;
+        }
+
+        .loginSubMenu {
+            display: flex;
+            justify-content: center;
+        }
+
+        .signUpWrapper {
+            display: flex;
+        }
+
+        #singUpBtn {
+            box-sizing: border-box;
+
+            width: 100%;
+            height: 80%;
+
+            background: #FFFFFF;
+            border: 1px solid #FF6B00;
+            border-radius: 20px;
+            margin:5px;
+        }
+
+        .findWrapper {
+            display: flex;
+        }
+
+        #findBtn {
+            /* Rectangle 9 */
+            box-sizing: border-box;
+
+            width: 100%;
+            height: 80%;
+
+            background: #FFFFFF;
+            border: 1px solid #FF6B00;
+            border-radius: 20px;
+            margin:5px;
+        }
+
+        .topMenuBar {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 5%;
+        }
+
+        .topBox {
+            display: flex;
+            justify-content: center;
+            width:50%;
+            height: 30px;
+
+            font-family: 'Inter';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 15px;
+            line-height: 15px;
+            align-items: center;
+            text-align: center;
+
+            color: #000000;
+            border: 2px solid #FF6B00;
+            border-radius: 20px;
+        }
+
+        .topBox a {
+            text-decoration: none;
+            color:black;
+        }
+
+        .topBox a:hover {
+            color: #FF6B00;
+        }
+
+
+    </style>
+    <section class="topMenuBar">
+        <!-- 상단 메뉴 바 -->
+        <div class="topBox">
+            <a href="/"><span>J Music Searcher JMS</span></a>
+            <span>&nbsp;|</span>
+            <a href="#"><span>&nbsp;검색하기</span></a>
+            <span>&nbsp;|</span>
+            <a href="/new"><span>&nbsp;이번달 신곡</span></a>
+            <span>&nbsp;|</span>
+            <a href="#"><span>&nbsp;오늘의 추천곡</span></a>
+            <span>&nbsp;|</span>
+            <a href="/DB"><span>&nbsp;Anime Song</span></a>
+            <span>&nbsp;|</span>
+            <a href="#"><span>&nbsp;Vocaloid</span></a>
+            <span>&nbsp;|</span>
+            <a href="#"><span>&nbsp;J pop</span></a>
+        </div>
+    </section>
+    <section class="loginSection">
+
+        <!-- 로그인 박스 -->
+        <div class="loginBox">
+            <form action="" id="loginForm">
+                <div class="idPwWrapper">
+                    <div style="display: flex; justify-content: center">
+                        <label for="idBox">아이디</label>
+                        <input type="text" id="idBox" placeholder="아이디">
+                    </div>
+                    <div style="display: flex; justify-content: center">
+                        <label for="pwBox">비밀번호</label>
+                        <input type="text" id="pwBox" placeholder="비밀번호">
+                    </div>
+                </div>
+                <div class="loginWrapper">
+                    <input type="submit" value="→로그인" id="loginBtn">
+                </div>
+                <div class="loginSubMenu">
+                    <div class="signUpWrapper">
+                        <button id="singUpBtn">→회원 가입</button>
+                    </div>
+                    <div class="findWrapper">
+                        <button id="findBtn">→계정 찾기</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!--    <script src="/js/header.js"></script>-->
+    <!--    TODO javascript 추가시 추가한다. -->
+</div>
+</body>
+</html>
