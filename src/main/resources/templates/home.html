@@ -3,8 +3,21 @@
       layout:decorate="~{layouts/default}">
 
 <div layout:fragment="content">
+    <style>
+        img {
+            width:100%;
+            height:30vh;
+            border-radius:20px;
+            border: 1px solid black;
+        }
+    </style>
     <div class="mainWrapper">
-        <div style="border: 2px solid salmon">dd</div>
+        <div style="border: 2px solid salmon; padding: 5px; border-radius: 20px;">
+            <div class="mainBanner"></div>
+            <div class="animationSongBanner"><a href="/DB"><img src="/img/ANIMATION%20SONG%20BANNER.jpg" alt="애니"></a></div>
+            <div class="vocaloidSongBanner"><a href="/vocaloid"><img src="/img/VOCALOID%20SONG%20BANNER.jpg" alt=""></a></div>
+            <div class="jPopSongBanner"><a href=""><img src="/img/JPOP%20SONG%20BANNER.jpg" alt=""></a></div>
+        </div>
     </div>
 </div>
 

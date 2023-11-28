@@ -1,62 +1,57 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>메인</title>
-</head>
-<style>
-    #songTable {
-        width:100%;
-    }
+<html xmlns:th="http//www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/default}" lang="en">
 
-    #songTable th,td {
-        width:20%;
-        height:25px;
-        vertical-align: middle;
-        word-break: keep-all;
-    }
+<div layout:fragment="content">
+    <style>
+        #songTable {
+            width:100%;
+        }
 
-    #songTable tr th{
-        background: #FC9292;
-        font-size: 20px;
-    }
+        #songTable td {
+            height:25px;
+            vertical-align: middle;
+            word-break: keep-all;
+        }
 
-    #tjWrapper {
-        width:75%;
-    }
+        #songTable td:nth-child(1),
+        #songTable td:nth-child(2) {
+            width:10%;
+            text-align:center;
+            vertical-align: center;
+            background: bisque;
+        }
 
-    #songTable td:nth-child(1) {
-        width:10%;
-        text-align:center;
-        vertical-align: middle;
-        background: bisque;
-    }
+        #songTable td:nth-child(3) {
+            width:55%;
+            text-align: center;
+            vertical-align: center;
+        }
+        #songTable td:nth-child(4) {
+            width:25%;
+            text-align: center;
+            vertical-align: center;
+        }
 
-    #songTable td:nth-child(2) {
-        width:55%;
-        text-align: center;
-        vertical-align: center;
-    }
-    #songTable td:nth-child(3),
-    #songTable td:nth-child(4),
-    #songTable td:nth-child(5){
-        width:11.5%;
-        text-align: center;
-        vertical-align: center;
-    }
+        #animeName {
+            background: #FC9292;
+            font-size:20px;
+        }
 
-    #songTable td:nth-child(3),
-    #songTable td:nth-child(4),
-    #songTable td:nth-child(5) {
-        text-align:center;
-        vertical-align: middle;
-    }
+        #animeSingerNumber {
+            background: #FC9292;
+            font-size:20px;
+        }
 
+        #dbWrapper {
+            width:75%;
+            display:flex;
+        }
 
-
-</style>
-<body>
+    </style>
     <div id="tjWrapper">
+        <iframe src="/templates/loading.html"></iframe>
         <div>
             <p>태진 <span th:text="${thisMonth}"></span><span></span></p>
         </div>
@@ -77,5 +72,6 @@
             </tr>
         </table>
     </div>
-</body>
+</div>
+
 </html>
